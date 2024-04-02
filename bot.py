@@ -4,7 +4,8 @@
 # Backup Channel @JishuBotz
 # Developer @JishuDeveloper
 
-
+from aiohttp import web
+from plugins import web_server
 
 
 import asyncio
@@ -64,6 +65,12 @@ class Bot(Client):
            logging.info(f"Restart message status"
                  f"success: {success}"
                  f"failed: {failed}")
+        # web-response
+        app = web.AppRunner(await web_server())
+        await app.setup()
+        bind_address = "0.0.0.0"
+        await web.TCPSite(app, bind_address, PORT).start()
+ 
 
     async def stop(self, *args):
         msg = f"@{self.username} stopped. Bye."
