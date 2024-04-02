@@ -16,6 +16,7 @@ class Config:
     DB_URL = os.environ.get("DB_URL", "")
     DB_NAME = os.environ.get("DB_NAME", "madflixbotz")
     OWNER_ID = [int(id) for id in os.environ.get("OWNER_ID", '').split()]
+    PORT = os.environ.get("PORT", "8080")
 
 
 class temp(object): 
